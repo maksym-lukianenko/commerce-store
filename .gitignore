@@ -1,0 +1,17 @@
+#Vagrant
+**/.vagrant/
+
+#IDEA files
+.idea/
+*.iml
+
+#Build
+**/out/
+**/gradle/
+**/.gradle/
+**/build/
+**/gradlew
+**/gradlew.bat
+
+#GIT
+*.patch
