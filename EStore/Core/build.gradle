@@ -1,0 +1,10 @@
+dependencies {
+    compile "org.hibernate:hibernate-core:$hibernate_core_version"
+    compile "org.hibernate:hibernate-validator:$hibernate_validator_version"
+
+    compile "com.google.guava:guava:$guava_version"
+    compile "org.apache.commons:commons-lang3:$commons_lang3_version"
+    compile "org.apache.commons:commons-collections4:$commons_collections4_version"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jackson_databind_version"
+    compile "org.joda:joda-money:$joda_money_version"
+}
