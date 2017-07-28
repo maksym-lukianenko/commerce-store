@@ -1,13 +1,17 @@
 package com.estore.commerce.order.entity
 
+import org.hibernate.annotations.GenericGenerator
 import java.io.Serializable
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "ORDER")
-class Order(@Id var id: String) : Serializable {
+class Order : Serializable {
+
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    var id: String? = null
 
     override fun toString() = "Order(id='$id')"
 }
