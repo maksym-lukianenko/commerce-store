@@ -1,5 +1,8 @@
-package com.estore.commerce.catalog.entity
+package com.estore.commerce.catalog.product.entity
 
+import com.estore.commerce.catalog.category.entity.Category
+import org.apache.commons.lang3.StringUtils
+import org.hibernate.annotations.GenericGenerator
 import java.io.Serializable
 import java.time.LocalDate
 import javax.persistence.*
@@ -9,7 +12,9 @@ import javax.persistence.*
 class Product : Serializable {
 
     @Id
-    lateinit var id: String
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    var id: String = StringUtils.EMPTY
 
     @Column(name = "START_DATE")
     lateinit var startDate: LocalDate
@@ -24,13 +29,13 @@ class Product : Serializable {
     var onSale: Boolean = false
 
     @ManyToMany(mappedBy = "childProducts")
-    lateinit var parentCategories: Set<Category>
+    var parentCategories: MutableCollection<Category> = mutableSetOf()
 
     @OneToOne(mappedBy = "parentProduct")
     lateinit var defaultSku: Sku
 
     @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "parentProduct")
-    var childSkus: MutableSet<Sku> = mutableSetOf()
+    var childSkus: MutableCollection<Sku> = mutableSetOf()
 
     override fun toString(): String = "Product(id='$id', defaultName='$name')"
 }

@@ -18,11 +18,16 @@ apply plugin: 'application'
 mainClassName = "com.estore.Application"
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-web"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-    runtime "org.postgresql:postgresql:$postgres_driver_version"
-    runtime "org.springframework.boot:spring-boot-devtools"
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa") {
+        exclude group: "org.springframework.data", module: "spring-data-jpa"
+        exclude group: "org.hibernate", module: "hibernate-core"
+    }
+    runtime("org.postgresql:postgresql:$postgres_driver_version")
+    runtime("org.springframework.boot:spring-boot-devtools")
 
-    compile project (':Core')
+    compile("com.fasterxml.jackson.core:jackson-databind:$jackson_databind_version")
+
+    compile project(":Core")
 }
 

@@ -1,6 +1,6 @@
 package com.estore.commerce.pricing.entity
 
-import com.estore.commerce.catalog.entity.Sku
+import com.estore.commerce.catalog.product.entity.Sku
 import org.joda.money.CurrencyUnit
 import org.joda.money.Money
 import java.io.Serializable

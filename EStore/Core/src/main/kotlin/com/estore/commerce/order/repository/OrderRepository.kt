@@ -1,4 +1,4 @@
-package com.estore.repository
+package com.estore.commerce.order.repository
 
 import com.estore.commerce.order.entity.Order
 import org.springframework.data.repository.CrudRepository

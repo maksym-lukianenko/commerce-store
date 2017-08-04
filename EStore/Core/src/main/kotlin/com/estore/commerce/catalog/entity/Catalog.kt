@@ -1,5 +1,8 @@
 package com.estore.commerce.catalog.entity
 
+import com.estore.commerce.catalog.category.entity.Category
+import org.apache.commons.lang3.StringUtils
+import org.hibernate.annotations.GenericGenerator
 import java.io.Serializable
 import javax.persistence.*
 
@@ -8,13 +11,15 @@ import javax.persistence.*
 class Catalog : Serializable {
 
     @Id
-    lateinit var id: String
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    var id: String = StringUtils.EMPTY
 
     @Column(name = "NAME", nullable = false)
     lateinit var name: String
 
     @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "parentCatalog")
-    var rootCategories: MutableSet<Category> = mutableSetOf()
+    var rootCategories: MutableCollection<Category> = mutableSetOf()
 
     override fun toString() = "Catalog(id='$id', name='$name')"
 }

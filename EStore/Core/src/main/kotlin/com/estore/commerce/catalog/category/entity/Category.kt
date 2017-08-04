@@ -1,5 +1,9 @@
-package com.estore.commerce.catalog.entity
+package com.estore.commerce.catalog.category.entity
 
+import com.estore.commerce.catalog.entity.Catalog
+import com.estore.commerce.catalog.product.entity.Product
+import org.apache.commons.lang3.StringUtils
+import org.hibernate.annotations.GenericGenerator
 import java.io.Serializable
 import java.time.LocalDate
 import javax.persistence.*
@@ -9,16 +13,18 @@ import javax.persistence.*
 class Category : Serializable {
 
     @Id
-    lateinit var id: String
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    var id: String = StringUtils.EMPTY
 
     @Column(name = "START_DATE")
-    lateinit var startDate: LocalDate
+    var startDate: LocalDate = LocalDate.now()
 
     @Column(name = "NAME", nullable = false)
     lateinit var name: String
 
     @Column(name = "DESCRIPTION")
-    lateinit var description: String
+    var description: String = StringUtils.EMPTY
 
     @Column(name = "ON_SALE")
     var onSale: Boolean = false
@@ -29,17 +35,17 @@ class Category : Serializable {
 
     @ManyToOne(cascade = arrayOf(CascadeType.ALL))
     @JoinColumn(name = "PARENT_CATEGORY_ID")
-    lateinit var parentCategory: Category
+    var parentCategory: Category? = null
 
     @OneToMany(mappedBy = "parentCategory")
-    var childCategories: MutableSet<Category> = mutableSetOf()
+    var childCategories: MutableCollection<Category> = mutableSetOf()
 
     @ManyToMany
     @JoinTable(name = "CATEGORY_PRODUCTS",
             joinColumns = arrayOf(JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")),
             inverseJoinColumns = arrayOf(JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID"))
     )
-    var childProducts: MutableSet<Product> = mutableSetOf()
+    var childProducts: MutableCollection<Product> = mutableSetOf()
 
     override fun toString() = "Category(id='$id', name='$name')"
 }

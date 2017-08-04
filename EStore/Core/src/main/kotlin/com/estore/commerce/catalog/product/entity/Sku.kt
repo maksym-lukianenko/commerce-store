@@ -1,6 +1,8 @@
-package com.estore.commerce.catalog.entity
+package com.estore.commerce.catalog.product.entity
 
 import com.estore.commerce.pricing.entity.Price
+import org.apache.commons.lang3.StringUtils
+import org.hibernate.annotations.GenericGenerator
 import java.io.Serializable
 import java.time.LocalDate
 import javax.persistence.*
@@ -10,7 +12,9 @@ import javax.persistence.*
 class Sku : Serializable {
 
     @Id
-    lateinit var id: String
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    var id: String = StringUtils.EMPTY
 
     @Column(name = "START_DATE")
     lateinit var startDate: LocalDate
