@@ -14,7 +14,7 @@ class CatalogServiceImpl : CatalogService {
     lateinit var catalogRepository: CatalogRepository
 
     override fun getCatalog(id: String): Catalog {
-        return catalogRepository.findOne(id) ?: throw ItemNotFoundException("Catalog with id: $id not found.")
+        return catalogRepository.findOne(id) ?: throw ItemNotFoundException("Catalog with id: '$id' not found.")
     }
 
     override fun createCatalog(catalog: Catalog): Catalog {

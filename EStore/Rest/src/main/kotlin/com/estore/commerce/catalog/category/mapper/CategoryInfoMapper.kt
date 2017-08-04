@@ -13,6 +13,7 @@ class CategoryInfoMapper {
         categoryInfo.name = category.name
         categoryInfo.description = category.description
         categoryInfo.onSale = category.onSale
+        categoryInfo.childCategories = map(category.childCategories)
         return categoryInfo
     }
 

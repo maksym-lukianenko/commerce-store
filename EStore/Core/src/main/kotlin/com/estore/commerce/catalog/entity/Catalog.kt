@@ -18,8 +18,8 @@ class Catalog : Serializable {
     @Column(name = "NAME", nullable = false)
     lateinit var name: String
 
-    @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "parentCatalog")
-    var rootCategories: MutableCollection<Category> = mutableSetOf()
+    @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "parentCatalog", fetch = FetchType.LAZY)
+    lateinit var rootCategories: MutableCollection<Category>
 
     override fun toString() = "Catalog(id='$id', name='$name')"
 }

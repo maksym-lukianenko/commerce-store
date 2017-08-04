@@ -18,13 +18,13 @@ class Category : Serializable {
     var id: String = StringUtils.EMPTY
 
     @Column(name = "START_DATE")
-    var startDate: LocalDate = LocalDate.now()
+    var startDate: LocalDate? = null
 
     @Column(name = "NAME", nullable = false)
     lateinit var name: String
 
     @Column(name = "DESCRIPTION")
-    var description: String = StringUtils.EMPTY
+    var description: String? = null
 
     @Column(name = "ON_SALE")
     var onSale: Boolean = false
@@ -37,15 +37,15 @@ class Category : Serializable {
     @JoinColumn(name = "PARENT_CATEGORY_ID")
     var parentCategory: Category? = null
 
-    @OneToMany(mappedBy = "parentCategory")
-    var childCategories: MutableCollection<Category> = mutableSetOf()
+    @OneToMany(mappedBy = "parentCategory", fetch = FetchType.LAZY)
+    lateinit var childCategories: MutableCollection<Category>
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "CATEGORY_PRODUCTS",
             joinColumns = arrayOf(JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID")),
             inverseJoinColumns = arrayOf(JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID"))
     )
-    var childProducts: MutableCollection<Product> = mutableSetOf()
+    lateinit var childProducts: MutableCollection<Product>
 
     override fun toString() = "Category(id='$id', name='$name')"
 }

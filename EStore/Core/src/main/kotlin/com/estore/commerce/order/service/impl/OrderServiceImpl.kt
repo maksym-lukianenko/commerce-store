@@ -14,7 +14,7 @@ class OrderServiceImpl : OrderService {
     lateinit var orderRepository: OrderRepository
 
     override fun getOrder(id: String): Order {
-        return orderRepository.findOne(id) ?: throw ItemNotFoundException("Order with id: $id not found.")
+        return orderRepository.findOne(id) ?: throw ItemNotFoundException("Order with id: '$id' not found.")
     }
 
     override fun createOrder(order: Order): Order {

@@ -14,7 +14,7 @@ class CategoryServiceImpl : CategoryService {
     lateinit var categoryRepository: CategoryRepository
 
     override fun getCategory(id: String): Category {
-        return categoryRepository.findOne(id) ?: throw ItemNotFoundException("Category with id: $id not found.")
+        return categoryRepository.findOne(id) ?: throw ItemNotFoundException("Category with id: '$id' not found.")
     }
 
     override fun createCategory(category: Category): Category {

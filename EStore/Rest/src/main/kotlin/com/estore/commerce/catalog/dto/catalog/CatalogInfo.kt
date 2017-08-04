@@ -1,13 +1,12 @@
 package com.estore.commerce.catalog.dto.catalog
 
 import com.estore.commerce.catalog.category.dto.CategoryInfo
-import org.apache.commons.lang3.StringUtils
 
 class CatalogInfo {
 
-    var id: String = StringUtils.EMPTY
+    lateinit var id: String
 
-    var name: String = StringUtils.EMPTY
+    lateinit var name: String
 
-    var rootCategories: Collection<CategoryInfo> = listOf()
+    lateinit var rootCategories: Collection<CategoryInfo>
 }

@@ -1,16 +1,14 @@
 package com.estore.commerce.catalog.category.dto
 
-import org.apache.commons.lang3.StringUtils
-
 class CategoryInfo {
 
-    var id: String = StringUtils.EMPTY
+    lateinit var id: String
 
-    var name: String = StringUtils.EMPTY
+    lateinit var name: String
 
-    var description: String = StringUtils.EMPTY
+    var description: String? = null
 
     var onSale: Boolean = false
 
-    var childCategories: Collection<CategoryInfo> = listOf()
+    lateinit var childCategories: Collection<CategoryInfo>
 }

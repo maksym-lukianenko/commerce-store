@@ -17,25 +17,25 @@ class Product : Serializable {
     var id: String = StringUtils.EMPTY
 
     @Column(name = "START_DATE")
-    lateinit var startDate: LocalDate
+    var startDate: LocalDate? = null
 
     @Column(name = "NAME", nullable = false)
     lateinit var name: String
 
     @Column(name = "DESCRIPTION")
-    lateinit var description: String
+    var description: String? = null
 
     @Column(name = "ON_SALE")
     var onSale: Boolean = false
 
-    @ManyToMany(mappedBy = "childProducts")
-    var parentCategories: MutableCollection<Category> = mutableSetOf()
+    @ManyToMany(mappedBy = "childProducts", fetch = FetchType.LAZY)
+    lateinit var parentCategories: MutableCollection<Category>
 
-    @OneToOne(mappedBy = "parentProduct")
+    @OneToOne(mappedBy = "parentProduct", optional = false)
     lateinit var defaultSku: Sku
 
-    @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "parentProduct")
-    var childSkus: MutableCollection<Sku> = mutableSetOf()
+    @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "parentProduct", fetch = FetchType.LAZY)
+    lateinit var childSkus: MutableCollection<Sku>
 
     override fun toString(): String = "Product(id='$id', defaultName='$name')"
 }
