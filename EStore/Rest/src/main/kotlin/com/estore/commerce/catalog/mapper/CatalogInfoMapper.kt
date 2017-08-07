@@ -1,7 +1,7 @@
-package com.estore.commerce.catalog.mapper.catalog
+package com.estore.commerce.catalog.mapper
 
 import com.estore.commerce.catalog.category.mapper.CategoryInfoMapper
-import com.estore.commerce.catalog.dto.catalog.CatalogInfo
+import com.estore.commerce.catalog.dto.CatalogInfo
 import com.estore.commerce.catalog.entity.Catalog
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component

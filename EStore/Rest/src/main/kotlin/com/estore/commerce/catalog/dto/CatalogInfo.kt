@@ -1,4 +1,4 @@
-package com.estore.commerce.catalog.dto.catalog
+package com.estore.commerce.catalog.dto
 
 import com.estore.commerce.catalog.category.dto.CategoryInfo
 

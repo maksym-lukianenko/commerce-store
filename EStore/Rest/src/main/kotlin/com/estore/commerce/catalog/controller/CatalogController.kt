@@ -1,8 +1,9 @@
-package com.estore.commerce.catalog.controller.catalog
+package com.estore.commerce.catalog.controller
 
-import com.estore.commerce.catalog.dto.catalog.CatalogInfo
-import com.estore.commerce.catalog.mapper.catalog.CatalogInfoMapper
+import com.estore.commerce.catalog.dto.CatalogInfo
+import com.estore.commerce.catalog.mapper.CatalogInfoMapper
 import com.estore.commerce.catalog.service.CatalogService
+import com.estore.context.GenericContext
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -15,6 +16,8 @@ class CatalogController {
     lateinit var catalogService: CatalogService
     @Autowired
     lateinit var catalogInfoMapper: CatalogInfoMapper
+    @Autowired
+    lateinit var context: GenericContext
 
     @GetMapping("/catalog/{catalogId}")
     fun get(@PathVariable catalogId: String): CatalogInfo = catalogInfoMapper.map(catalogService.getCatalog(catalogId))
