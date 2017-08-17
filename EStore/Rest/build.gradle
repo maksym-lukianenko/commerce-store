@@ -28,6 +28,8 @@ dependencies {
 
     compile("com.fasterxml.jackson.core:jackson-databind:$jackson_databind_version")
 
+    compile ("org.flywaydb:flyway-core:$flyway_core_version")
+
     compile project(":Core")
 }
 
